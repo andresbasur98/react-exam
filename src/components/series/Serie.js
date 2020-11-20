@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { Component } from 'react'
+import React, { Children, Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Global } from '../../Global'
 
@@ -9,15 +9,30 @@ export default class Serie extends Component {
         serie: {}
     }
 
+    id = '';
     componentDidMount = async() => {
+        this.id = this.props.id
+        console.log(this.id)
        await this.cargarSerie()
     //    console.log(this.state.serie)
     }
 
+    componentDidUpdate = () => {
+        console.log(this.props.id)
+        console.log(this.id)
+        if(this.props.id !== this.id){
+            this.id = this.props.id
+            this.cargarSerie()
+            console.log('cargando de nuevo')
+            return
+        }else{
+            console.log('Son iguales')
+        }
+    }
     
 
     cargarSerie = async () => {
-        console.log(this.props.id)
+        // console.log(this.props.id)
         var request = 'api/Series/'+ this.props.id
         var url = Global.urlpelisculas + request
 

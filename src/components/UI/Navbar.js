@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Global } from '../../Global'
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 export default class Navbar extends Component {
 
@@ -50,7 +50,8 @@ export default class Navbar extends Component {
                            {
                              this.state.series.length > 0 &&
                              this.state.series.map((serie) => (
-                             <a href={'/serie/'+serie.idSerie} key={serie.idSerie} className="dropdown-item">{serie.nombre}</a>
+                             <NavLink to={'/serie/'+serie.idSerie} key={serie.idSerie} className="dropdown-item">{serie.nombre}</NavLink>
+                            //  <Redirect key={serie.idSerie} to={"/serie/"+serie.idSerie} />
                              ))
                            }
                         
